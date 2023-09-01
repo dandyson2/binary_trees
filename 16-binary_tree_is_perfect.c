@@ -9,7 +9,7 @@
 
 unsigned char _leaf_checker(const binary_tree_t *node)
 {
-return ((node->left == NULL && node->right == NULL) ? 1 : 0);
+    return ((node->left == NULL && node->right == NULL) ? 1 : 0);
 }
 
 /**
@@ -21,7 +21,7 @@ return ((node->left == NULL && node->right == NULL) ? 1 : 0);
 
 size_t _node_depth_(const binary_tree_t *tree)
 {
-return (tree->parent != NULL ? 1 + _node_depth_(tree->parent) : 0);
+    return (tree->parent != NULL ? 1 + _node_depth_(tree->parent) : 0);
 }
 
 /**
@@ -33,9 +33,9 @@ return (tree->parent != NULL ? 1 + _node_depth_(tree->parent) : 0);
 
 const binary_tree_t *_leaf_getter(const binary_tree_t *tree)
 {
-if (_leaf_checker(tree) == 1)
-return (tree);
-return (tree->left ? _leaf_getter(tree->left) : _leaf_getter(tree->right));
+    if (_leaf_getter(tree) == 1)
+        return (tree);
+    return (tree->left ? _leaf_getter(tree->left) : _leaf_getter(tree->right));
 }
 
 /**
@@ -49,14 +49,14 @@ return (tree->left ? _leaf_getter(tree->left) : _leaf_getter(tree->right));
 */
 
 int _repetitive_perfect(const binary_tree_t *tree,
-size_t leaf_depth, size_t level)
+        size_t leaf_depth, size_t level)
 {
-if (is_leaf(tree))
-return (level == leaf_depth ? 1 : 0);
-if (tree->left == NULL || tree->right == NULL)
-return (0);
-return (_repetitive_perfect(tree->left, leaf_depth, level + 1) &&
-_repetitive_perfect(tree->right, leaf_depth, level + 1));
+    if (is_leaf(tree))
+        return (level == leaf_depth ? 1 : 0);
+    if (tree->left == NULL || tree->right == NULL)
+        return (0);
+    return (_repetitive_perfect(tree->left, leaf_depth, level + 1) &&
+        _repetitive_perfect(tree->right, leaf_depth, level + 1));
 }
 
 /**
@@ -68,7 +68,7 @@ _repetitive_perfect(tree->right, leaf_depth, level + 1));
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-if (tree == NULL)
-return (0);
-return (_repetitive_perfect(tree, depth(get_leaf(tree)), 0));
+    if (tree == NULL)
+        return (0);
+    return (_repetitive_perfect(tree, _node_depth_(_leaf_getter(tree)), 0));
 }
