@@ -51,7 +51,7 @@ const binary_tree_t *_leaf_getter(const binary_tree_t *tree)
 int _repetitive_perfect(const binary_tree_t *tree,
         size_t leaf_depth, size_t level)
 {
-    if (is_leaf(tree))
+    if (_leaf_getter(tree))
         return (level == leaf_depth ? 1 : 0);
     if (tree->left == NULL || tree->right == NULL)
         return (0);
